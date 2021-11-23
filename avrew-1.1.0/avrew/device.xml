@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<avrdevices>
+  <!-- pagesizeはバイト単位なので注意!データシートの記載はワード単位 -->
+
+  <device name="ATtiny2313" signature="1E910A">
+    <flash pagesize="32" npages="64" />
+    <eeprom pagesize="4" npages="32" />
+    <fuse
+      name="low"
+      bit7="クロック分周初期値 (1:1/1, 0:1/8)"
+      bit6="CKOUT (0:PB0にシステムクロックを出力)"
+      bit5="SUT1"
+      bit4="SUT0 起動時間1"
+      bit3="CKSEL3 システムクロック選択"
+      bit2="CKSEL2 CKSEL3210=0110:内部128KHz"
+      bit1="CKSEL1 0100:内蔵8MHz 0010:内蔵4MHz"
+      bit0="CKSEL0 1111:外部クリスタル"
+    ></fuse>
+    <fuse
+      name="high"
+      bit7="DWEN (On-Chipデバッグ 1:無効, 0:有効)"
+      bit6="EESAVE (消去でEEPROMを 1:消去, 0:保持)"
+      bit5="SPIEN (1:ISP禁止, 0:ISP許可) ※Parallel時のみ"
+      bit4="WDTON (1:WDT通常動作, 0:WDT常時ON)"
+      bit3="BODLEVEL2"
+      bit2="BODLEVEL1"
+      bit1="BODLEVEL0 ※データシート参照"
+      bit0="RSTDISBL (RESETピン 1:有効, 0:無効(PA2))"
+    ></fuse>
+    <fuse
+      name="ext"
+      bit0="SPMEN (SPM命令 1:無効, 0:有効)"
+    ></fuse>
+    <warning fuse="low"  pattern="****0000" 
+      message="クロックが外部設定です。書き込んでもよろしいですか？" />
+    <error   fuse="high" pattern="*******0" 
+      message="RESETが無効になっています。この設定では書き込めません。" />
+  </device>
+  
+  
+  <device name="ATmega88" signature="1E930A">
+    <flash pagesize="64" npages="128" />
+    <eeprom pagesize="4" npages="128" />
+    <fuse
+      name="low"
+      bit7="クロック分周初期値 (1:1/1, 0:1/8)"
+      bit6="CKOUT (0:PB0にシステムクロックを出力)"
+      bit5="SUT1"
+      bit4="SUT0 起動時間"
+      bit3="CKSEL3 システムクロック選択"
+      bit2="CKSEL2 0000:外部"
+      bit1="CKSEL1 0010:内部8MHz   0011:内部128KHz"
+      bit0="CKSEL0 010x:低速XTL 011x:高速XTL 1xxx:低電力XTL"
+    ></fuse>
+    <fuse
+      name="high"
+      bit7="RSTDISBL (RESETピン 1:有効, 0:無効(PC6))"
+      bit6="DWEN (On-Chipデバッグ 1:無効, 0:有効)"
+      bit5="SPIEN (1:ISP禁止, 0:ISP許可) ※Parallel時のみ"
+      bit4="WDTON (1:WDT通常動作, 0:WDT常時ON)"
+      bit3="EESAVE (消去でEEPROMを 1:消去, 0:保持)"
+      bit2="BODLEVEL2 "
+      bit1="BODLEVEL1 "
+      bit0="BODLEVEL0 (111:無, 110:1.8V, 101:2.7V, 100:4.3V)"
+    ></fuse>
+    <fuse
+      name="ext"
+      bit2="BOOTSZ1"
+      bit1="BOOTSZ0 ※データシート参照"
+      bit0="BOOTRST ※データシート参照"
+    ></fuse>
+    <warning fuse="low"  pattern="****0000" 
+      message="クロックが外部設定です。書き込んでもよろしいですか？" />
+    <error   fuse="high" pattern="0*******" 
+      message="RESETが無効になっています。この設定では書き込めません。" />
+  </device>
+
+  <device name="ATmega88PA" signature="1E930F" base="ATmega88">
+  </device>
+
+
+  <device name="ATmega328P" signature="1E950F">
+    <flash pagesize="128" npages="256" />
+    <eeprom pagesize="4" npages="256" />
+    <fuse
+      name="low"
+      bit7="クロック分周初期値 (1:1/1, 0:1/8)"
+      bit6="CKOUT (0:PB0にシステムクロックを出力)"
+      bit5="SUT1"
+      bit4="SUT0 起動時間"
+      bit3="CKSEL3 システムクロック選択"
+      bit2="CKSEL2 0000:外部"
+      bit1="CKSEL1 0010:内部8MHz   0011:内部128KHz"
+      bit0="CKSEL0 010x:低速XTL 011x:高速XTL 1xxx:低電力XTL"
+    ></fuse>
+    <fuse
+      name="high"
+      bit7="RSTDISBL (RESETピン 1:有効, 0:無効(PC6))"
+      bit6="DWEN (On-Chipデバッグ 1:無効, 0:有効)"
+      bit5="SPIEN (1:ISP禁止, 0:ISP許可) ※Parallel時のみ"
+      bit4="WDTON (1:WDT通常動作, 0:WDT常時ON)"
+      bit3="EESAVE (消去でEEPROMを 1:消去, 0:保持)"
+      bit2="BOOTSZ1"
+      bit1="BOOTSZ0 ※データシート参照"
+      bit0="BOOTRST ※データシート参照"
+    ></fuse>
+    <fuse
+      name="ext"
+      bit2="BODLEVEL2 低電圧検出リセットの制御と電圧選択"
+      bit1="BODLEVEL1 (111:無, 110:1.8V, 101:2.7V, 100:4.3V)"
+      bit0="BODLEVEL0 "
+    ></fuse>
+    <warning fuse="low"  pattern="****0000"
+      message="クロックが外部設定です。書き込んでもよろしいですか？" />
+    <error   fuse="high" pattern="0*******"
+      message="RESETが無効になっています。この設定では書き込めません。" />
+  </device>
+
+</avrdevices>
+

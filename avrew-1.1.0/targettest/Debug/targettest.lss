@@ -1,0 +1,450 @@
+
+targettest.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000078  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000232  2**0
+                  ALLOC, LOAD, DATA
+  2 .comment      0000002f  00000000  00000000  00000232  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000030  00000000  00000000  00000261  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000a7a  00000000  00000000  00000291  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000540  00000000  00000000  00000d0b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000340  00000000  00000000  0000124b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000068  00000000  00000000  0000158c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    00000163  00000000  00000000  000015f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    000004b0  00000000  00000000  00001757  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000020  00000000  00000000  00001c07  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .text         00000002  000001bc  000001bc  00000230  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 12 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00001c28  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .text.UARTSendByte 00000034  00000188  00000188  000001fc  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 14 .text.__vector_11 00000080  00000108  00000108  0000017c  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 15 .text.main    00000090  00000078  00000078  000000ec  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 16 .bss.sua_frxcomp 00000001  00800060  00800060  00000232  2**0
+                  ALLOC
+ 17 .bss.sua_rxdata 00000001  00800061  00800061  00000232  2**0
+                  ALLOC
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	15 c0       	rjmp	.+42     	; 0x2c <__ctors_end>
+   2:	dc c0       	rjmp	.+440    	; 0x1bc <__bad_interrupt>
+   4:	db c0       	rjmp	.+438    	; 0x1bc <__bad_interrupt>
+   6:	da c0       	rjmp	.+436    	; 0x1bc <__bad_interrupt>
+   8:	d9 c0       	rjmp	.+434    	; 0x1bc <__bad_interrupt>
+   a:	d8 c0       	rjmp	.+432    	; 0x1bc <__bad_interrupt>
+   c:	d7 c0       	rjmp	.+430    	; 0x1bc <__bad_interrupt>
+   e:	d6 c0       	rjmp	.+428    	; 0x1bc <__bad_interrupt>
+  10:	d5 c0       	rjmp	.+426    	; 0x1bc <__bad_interrupt>
+  12:	d4 c0       	rjmp	.+424    	; 0x1bc <__bad_interrupt>
+  14:	d3 c0       	rjmp	.+422    	; 0x1bc <__bad_interrupt>
+  16:	78 c0       	rjmp	.+240    	; 0x108 <__vector_11>
+  18:	d1 c0       	rjmp	.+418    	; 0x1bc <__bad_interrupt>
+  1a:	d0 c0       	rjmp	.+416    	; 0x1bc <__bad_interrupt>
+  1c:	cf c0       	rjmp	.+414    	; 0x1bc <__bad_interrupt>
+  1e:	ce c0       	rjmp	.+412    	; 0x1bc <__bad_interrupt>
+  20:	cd c0       	rjmp	.+410    	; 0x1bc <__bad_interrupt>
+  22:	cc c0       	rjmp	.+408    	; 0x1bc <__bad_interrupt>
+  24:	cb c0       	rjmp	.+406    	; 0x1bc <__bad_interrupt>
+
+00000026 <.dinit>:
+  26:	00 60       	ori	r16, 0x00	; 0
+  28:	00 62       	ori	r16, 0x20	; 32
+  2a:	80 00       	.word	0x0080	; ????
+
+0000002c <__ctors_end>:
+  2c:	11 24       	eor	r1, r1
+  2e:	1f be       	out	0x3f, r1	; 63
+  30:	cf ed       	ldi	r28, 0xDF	; 223
+  32:	cd bf       	out	0x3d, r28	; 61
+
+00000034 <__do_copy_data>:
+  34:	e6 e2       	ldi	r30, 0x26	; 38
+  36:	f0 e0       	ldi	r31, 0x00	; 0
+  38:	40 e0       	ldi	r20, 0x00	; 0
+  3a:	17 c0       	rjmp	.+46     	; 0x6a <__do_clear_bss+0x8>
+  3c:	b5 91       	lpm	r27, Z+
+  3e:	a5 91       	lpm	r26, Z+
+  40:	35 91       	lpm	r19, Z+
+  42:	25 91       	lpm	r18, Z+
+  44:	05 91       	lpm	r16, Z+
+  46:	07 fd       	sbrc	r16, 7
+  48:	0c c0       	rjmp	.+24     	; 0x62 <__do_clear_bss>
+  4a:	95 91       	lpm	r25, Z+
+  4c:	85 91       	lpm	r24, Z+
+  4e:	ef 01       	movw	r28, r30
+  50:	f9 2f       	mov	r31, r25
+  52:	e8 2f       	mov	r30, r24
+  54:	05 90       	lpm	r0, Z+
+  56:	0d 92       	st	X+, r0
+  58:	a2 17       	cp	r26, r18
+  5a:	b3 07       	cpc	r27, r19
+  5c:	d9 f7       	brne	.-10     	; 0x54 <__SREG__+0x15>
+  5e:	fe 01       	movw	r30, r28
+  60:	04 c0       	rjmp	.+8      	; 0x6a <__do_clear_bss+0x8>
+
+00000062 <__do_clear_bss>:
+  62:	1d 92       	st	X+, r1
+  64:	a2 17       	cp	r26, r18
+  66:	b3 07       	cpc	r27, r19
+  68:	e1 f7       	brne	.-8      	; 0x62 <__do_clear_bss>
+  6a:	eb 32       	cpi	r30, 0x2B	; 43
+  6c:	f4 07       	cpc	r31, r20
+  6e:	31 f7       	brne	.-52     	; 0x3c <__do_copy_data+0x8>
+  70:	03 d0       	rcall	.+6      	; 0x78 <_etext>
+  72:	00 c0       	rjmp	.+0      	; 0x74 <_exit>
+
+00000074 <_exit>:
+  74:	f8 94       	cli
+
+00000076 <__stop_program>:
+  76:	ff cf       	rjmp	.-2      	; 0x76 <__stop_program>
+
+Disassembly of section .text:
+
+000001bc <__bad_interrupt>:
+ 1bc:	21 cf       	rjmp	.-446    	; 0x0 <__TEXT_REGION_ORIGIN__>
+
+Disassembly of section .text.UARTSendByte:
+
+00000188 <UARTSendByte>:
+	uint16_t framedata;
+
+	//[debug]
+	//data = 0x53;
+
+	cli();
+ 188:	f8 94       	cli
+
+	//スタート、ストップビットを付加
+	framedata = data;
+ 18a:	90 e0       	ldi	r25, 0x00	; 0
+	framedata <<= 1;
+ 18c:	88 0f       	add	r24, r24
+ 18e:	99 1f       	adc	r25, r25
+	framedata |= 0x0200;
+	framedata &= 0xFFFE;
+ 190:	92 60       	ori	r25, 0x02	; 2
+ 192:	2a e0       	ldi	r18, 0x0A	; 10
+	//LSBから順に送出
+	bitcnt = 10;
+	do{
+		if(framedata&1)
+ 194:	80 ff       	sbrs	r24, 0
+ 196:	02 c0       	rjmp	.+4      	; 0x19c <UARTSendByte+0x14>
+			sbi(SOFTUART_TX_PORT, SOFTUART_TX_PINNO);
+ 198:	c6 9a       	sbi	0x18, 6	; 24
+ 19a:	01 c0       	rjmp	.+2      	; 0x19e <UARTSendByte+0x16>
+		else
+			cbi(SOFTUART_TX_PORT, SOFTUART_TX_PINNO);
+ 19c:	c6 98       	cbi	0x18, 6	; 24
+		framedata >>= 1;
+ 19e:	96 95       	lsr	r25
+ 1a0:	87 95       	ror	r24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1a2:	3c ec       	ldi	r19, 0xCC	; 204
+ 1a4:	3a 95       	dec	r19
+ 1a6:	f1 f7       	brne	.-4      	; 0x1a4 <UARTSendByte+0x1c>
+ 1a8:	3c ec       	ldi	r19, 0xCC	; 204
+ 1aa:	3a 95       	dec	r19
+ 1ac:	f1 f7       	brne	.-4      	; 0x1aa <UARTSendByte+0x22>
+ 1ae:	32 ed       	ldi	r19, 0xD2	; 210
+ 1b0:	3a 95       	dec	r19
+ 1b2:	f1 f7       	brne	.-4      	; 0x1b0 <UARTSendByte+0x28>
+ 1b4:	21 50       	subi	r18, 0x01	; 1
+		_delay_us(34);
+		_delay_us(34);
+		_delay_us(35);
+		bitcnt--;
+	}while(bitcnt);
+ 1b6:	71 f7       	brne	.-36     	; 0x194 <UARTSendByte+0xc>
+
+	sei();
+ 1b8:	78 94       	sei
+ 1ba:	08 95       	ret
+
+Disassembly of section .text.__vector_11:
+
+00000108 <__vector_11>:
+
+volatile uint8_t sua_rxdata = 0;
+volatile uint8_t sua_frxcomp = 0;	//ソフトUART受信完了フラグ
+
+ISR(PCINT_vect)
+{
+ 108:	1f 92       	push	r1
+ 10a:	0f 92       	push	r0
+ 10c:	0f b6       	in	r0, 0x3f	; 63
+ 10e:	0f 92       	push	r0
+ 110:	11 24       	eor	r1, r1
+ 112:	8f 93       	push	r24
+ 114:	9f 93       	push	r25
+	uint8_t bitcnt;
+
+	//UARTはアイドル時High、スタートビットは立下りを検出
+	if( bit_is_set(SOFTUART_RX_PIN, SOFTUART_RX_PINNO) )
+ 116:	b5 99       	sbic	0x16, 5	; 22
+ 118:	30 c0       	rjmp	.+96     	; 0x17a <__vector_11+0x72>
+		return;
+
+	cli();
+ 11a:	f8 94       	cli
+ 11c:	8c e9       	ldi	r24, 0x9C	; 156
+ 11e:	8a 95       	dec	r24
+ 120:	f1 f7       	brne	.-4      	; 0x11e <__vector_11+0x16>
+ 122:	8c e9       	ldi	r24, 0x9C	; 156
+ 124:	8a 95       	dec	r24
+ 126:	f1 f7       	brne	.-4      	; 0x124 <__vector_11+0x1c>
+
+	//スタートビットのパルス中央になるまで待つ
+	_delay_us(26);
+	_delay_us(26);
+	sua_rxdata = 0;
+ 128:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <sua_rxdata>
+ 12c:	98 e0       	ldi	r25, 0x08	; 8
+ 12e:	8c ec       	ldi	r24, 0xCC	; 204
+ 130:	8a 95       	dec	r24
+ 132:	f1 f7       	brne	.-4      	; 0x130 <__vector_11+0x28>
+ 134:	8c ec       	ldi	r24, 0xCC	; 204
+ 136:	8a 95       	dec	r24
+ 138:	f1 f7       	brne	.-4      	; 0x136 <__vector_11+0x2e>
+ 13a:	82 ed       	ldi	r24, 0xD2	; 210
+ 13c:	8a 95       	dec	r24
+ 13e:	f1 f7       	brne	.-4      	; 0x13c <__vector_11+0x34>
+	bitcnt = 8;
+	do{
+		_delay_us(34);
+		_delay_us(34);
+		_delay_us(35);
+		sua_rxdata >>= 1;
+ 140:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <sua_rxdata>
+ 144:	86 95       	lsr	r24
+ 146:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <sua_rxdata>
+		if( bit_is_set(SOFTUART_RX_PIN, SOFTUART_RX_PINNO) )
+ 14a:	b5 9b       	sbis	0x16, 5	; 22
+ 14c:	05 c0       	rjmp	.+10     	; 0x158 <__vector_11+0x50>
+			sua_rxdata |= 0x80;
+ 14e:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <sua_rxdata>
+ 152:	80 68       	ori	r24, 0x80	; 128
+ 154:	80 93 61 00 	sts	0x0061, r24	; 0x800061 <sua_rxdata>
+ 158:	91 50       	subi	r25, 0x01	; 1
+		bitcnt--;
+	}while(bitcnt);
+ 15a:	49 f7       	brne	.-46     	; 0x12e <__vector_11+0x26>
+ 15c:	8c ec       	ldi	r24, 0xCC	; 204
+ 15e:	8a 95       	dec	r24
+ 160:	f1 f7       	brne	.-4      	; 0x15e <__vector_11+0x56>
+ 162:	8c ec       	ldi	r24, 0xCC	; 204
+ 164:	8a 95       	dec	r24
+ 166:	f1 f7       	brne	.-4      	; 0x164 <__vector_11+0x5c>
+ 168:	82 ed       	ldi	r24, 0xD2	; 210
+ 16a:	8a 95       	dec	r24
+ 16c:	f1 f7       	brne	.-4      	; 0x16a <__vector_11+0x62>
+	_delay_us(34);
+	_delay_us(34);
+	_delay_us(35);
+
+
+	sua_frxcomp = true;
+ 16e:	81 e0       	ldi	r24, 0x01	; 1
+ 170:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+
+	//ピン変化割り込みフラグ解除
+	EIFR = 1<<PCIF;
+ 174:	80 e2       	ldi	r24, 0x20	; 32
+ 176:	8a bf       	out	0x3a, r24	; 58
+	//マスター割り込み許可
+	sei();
+ 178:	78 94       	sei
+
+}
+ 17a:	9f 91       	pop	r25
+ 17c:	8f 91       	pop	r24
+ 17e:	0f 90       	pop	r0
+ 180:	0f be       	out	0x3f, r0	; 63
+ 182:	0f 90       	pop	r0
+ 184:	1f 90       	pop	r1
+ 186:	18 95       	reti
+
+Disassembly of section .text.main:
+
+00000078 <main>:
+
+
+
+int main(void) 
+{
+  78:	cf 93       	push	r28
+  7a:	df 93       	push	r29
+  7c:	cd b7       	in	r28, 0x3d	; 61
+  7e:	dd 27       	eor	r29, r29
+  80:	c4 51       	subi	r28, 0x14	; 20
+  82:	cd bf       	out	0x3d, r28	; 61
+	uint8_t bufsize=20;
+	uint8_t bufidx=0;
+	uint8_t i;
+
+	//マスター割り込み禁止
+	cli();
+  84:	f8 94       	cli
+
+	//IO方向セット(0入力,1出力)
+	DDRB = 0b01001010;
+  86:	8a e4       	ldi	r24, 0x4A	; 74
+  88:	87 bb       	out	0x17, r24	; 23
+	DDRD = 0b00000000;
+  8a:	11 ba       	out	0x11, r1	; 17
+
+	//ポート初期化
+	//出力の場合1でHigh、0でLow
+	//入力の場合1を書くとプルアップ抵抗活性化、0を書くとハイインピーダンス
+	PORTB = 0b01100000;
+  8c:	80 e6       	ldi	r24, 0x60	; 96
+  8e:	88 bb       	out	0x18, r24	; 24
+	PORTD = 0b00000000;
+  90:	12 ba       	out	0x12, r1	; 18
+	
+	//////////////////////////////////////////////////////////////////////
+	//ピン割り込み
+	
+	//ピン変化割り込みマスク設定
+	PCMSK = 1<<PCINT5;
+  92:	80 e2       	ldi	r24, 0x20	; 32
+  94:	80 bd       	out	0x20, r24	; 32
+	//ピン割り込み許可
+	GIMSK = 1<<PCIE;
+  96:	8b bf       	out	0x3b, r24	; 59
+
+
+	//////////////////////////////////////////////////////////////////////
+	
+	//諸変数初期化
+	sua_frxcomp = false;
+  98:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+
+	//[debug]
+	//UARTSendByte(0x55);
+
+	//割り込み許可
+	sei();
+  9c:	78 94       	sei
+       ┗━━━┛
+
+*/
+	uint8_t uartbuf[20];
+	uint8_t bufsize=20;
+	uint8_t bufidx=0;
+  9e:	00 e0       	ldi	r16, 0x00	; 0
+	//割り込み許可
+	sei();
+
+	//メインループ
+	while(1){
+		if(bit_is_set(PINB,0))
+  a0:	b0 9b       	sbis	0x16, 0	; 22
+  a2:	02 c0       	rjmp	.+4      	; 0xa8 <__DATA_REGION_LENGTH__+0x28>
+			sbi(PORTB,1);
+  a4:	c1 9a       	sbi	0x18, 1	; 24
+  a6:	01 c0       	rjmp	.+2      	; 0xaa <__DATA_REGION_LENGTH__+0x2a>
+		else
+			cbi(PORTB,1);
+  a8:	c1 98       	cbi	0x18, 1	; 24
+		if(bit_is_set(PINB,2))
+  aa:	b2 9b       	sbis	0x16, 2	; 22
+  ac:	02 c0       	rjmp	.+4      	; 0xb2 <__DATA_REGION_LENGTH__+0x32>
+			sbi(PORTB,3);
+  ae:	c3 9a       	sbi	0x18, 3	; 24
+  b0:	01 c0       	rjmp	.+2      	; 0xb4 <__DATA_REGION_LENGTH__+0x34>
+		else
+			cbi(PORTB,3);
+  b2:	c3 98       	cbi	0x18, 3	; 24
+		
+		//ソフトUART受信完了待ち
+		if(sua_frxcomp){
+  b4:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+  b8:	88 23       	and	r24, r24
+  ba:	61 f0       	breq	.+24     	; 0xd4 <__DATA_REGION_LENGTH__+0x54>
+			sua_frxcomp = false;
+  bc:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+			uartbuf[bufidx++] = sua_rxdata;
+  c0:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <sua_rxdata>
+  c4:	e1 e0       	ldi	r30, 0x01	; 1
+  c6:	f0 e0       	ldi	r31, 0x00	; 0
+  c8:	ec 0f       	add	r30, r28
+  ca:	fd 1f       	adc	r31, r29
+  cc:	e0 0f       	add	r30, r16
+  ce:	f1 1d       	adc	r31, r1
+  d0:	80 83       	st	Z, r24
+  d2:	0f 5f       	subi	r16, 0xFF	; 255
+		}
+		//返信
+		if(sua_rxdata=='\n' || bufidx==bufsize){
+  d4:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <sua_rxdata>
+  d8:	8a 30       	cpi	r24, 0x0A	; 10
+  da:	39 f4       	brne	.+14     	; 0xea <__stack+0xb>
+			for(i=0; i<bufidx; i++){
+  dc:	00 23       	and	r16, r16
+  de:	01 f3       	breq	.-64     	; 0xa0 <__DATA_REGION_LENGTH__+0x20>
+  e0:	ce 01       	movw	r24, r28
+  e2:	01 96       	adiw	r24, 0x01	; 1
+  e4:	7c 01       	movw	r14, r24
+			cbi(PORTB,3);
+		
+		//ソフトUART受信完了待ち
+		if(sua_frxcomp){
+			sua_frxcomp = false;
+			uartbuf[bufidx++] = sua_rxdata;
+  e6:	10 e0       	ldi	r17, 0x00	; 0
+  e8:	03 c0       	rjmp	.+6      	; 0xf0 <__stack+0x11>
+		}
+		//返信
+		if(sua_rxdata=='\n' || bufidx==bufsize){
+  ea:	04 31       	cpi	r16, 0x14	; 20
+  ec:	c9 f6       	brne	.-78     	; 0xa0 <__DATA_REGION_LENGTH__+0x20>
+  ee:	f8 cf       	rjmp	.-16     	; 0xe0 <__stack+0x1>
+			for(i=0; i<bufidx; i++){
+				if(uartbuf[i]>=0x20)
+  f0:	f7 01       	movw	r30, r14
+  f2:	81 91       	ld	r24, Z+
+  f4:	7f 01       	movw	r14, r30
+  f6:	80 32       	cpi	r24, 0x20	; 32
+  f8:	10 f0       	brcs	.+4      	; 0xfe <__stack+0x1f>
+					UARTSendByte(uartbuf[i]+1);
+  fa:	8f 5f       	subi	r24, 0xFF	; 255
+  fc:	45 d0       	rcall	.+138    	; 0x188 <UARTSendByte>
+			sua_frxcomp = false;
+			uartbuf[bufidx++] = sua_rxdata;
+		}
+		//返信
+		if(sua_rxdata=='\n' || bufidx==bufsize){
+			for(i=0; i<bufidx; i++){
+  fe:	1f 5f       	subi	r17, 0xFF	; 255
+ 100:	10 17       	cp	r17, r16
+ 102:	b0 f3       	brcs	.-20     	; 0xf0 <__stack+0x11>
+				if(uartbuf[i]>=0x20)
+					UARTSendByte(uartbuf[i]+1);
+			}
+			bufidx=0;
+ 104:	00 e0       	ldi	r16, 0x00	; 0
+ 106:	cc cf       	rjmp	.-104    	; 0xa0 <__DATA_REGION_LENGTH__+0x20>
